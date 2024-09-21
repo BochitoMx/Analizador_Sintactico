@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador Léxico y Sintáctico</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #00A2FF;
+        text-align: center;
+    }
+    h1 {
+        margin-bottom: 20px;
+        color: #000000;
+    }
+    textarea {
+        width: 80%;
+        height: 150px;
+        border: 2px solid #000000;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 16px;
+        outline: none;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #5900b3;
+    }
+    #analizar {
+        background-color: #00FF00;
+        color: black;
+    }
+    #borrar {
+        background-color: #FF0000;
+        color: white;
+    }
+    table {
+        margin: 20px auto;
+        border-collapse: collapse;
+        width: 80%;
+        text-align: left;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+    }
+    th {
+        background-color: #E0E0E0;
+    }
+    .analyzers {
+        display: flex;
+        justify-content: space-around;
+    }
+    .analyzers > div {
+        width: 45%;
+    }
+    td {
+        padding: 10px;
+        border: 1px solid black;
+        background-color: #325b61;
+        color: #ffffff;
+    }
+    </style>
+</head>
+<body>
+    <h1>Analizador Léxico y Sintáctico</h1>
+    
+    <form method="POST">
+        <textarea name="codigo" placeholder="Ingrese el código..."></textarea>
+        <br>
+        <button type="submit" id="analizar">Analizar</button>
+        <button type="reset" id="borrar">Borrar</button>
+    </form>
+    
+    <div class="analyzers">
+        <div>
+            <h2>Analizador Léxico</h2>
+            <table>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Línea</th>
+                    <th>Columna</th>
+                </tr>
+                {% for token in tokens %}
+                <tr>
+                    <td>{{ token.tipo }}</td>
+                    <td>{{ token.valor }}</td>
+                    <td>{{ token.linea }}</td>
+                    <td>{{ token.columna }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        
+        <div>
+            <h2>Analizador Sintáctico</h2>
+            <table>
+                <tr>
+                    <th>Línea</th>
+                    <th>Tipo de Estructura</th>
+                    <th>Estructura Correcta</th>
+                    <th>Estructura Incorrecta</th>
+                </tr>
+                {% for estructura in estructuras %}
+                <tr>
+                    <td>{{ estructura.linea }}</td>
+                    <td>{{ estructura.tipo_estructura }}</td>
+                    <td>{{ estructura.estructura_correcta }}</td>
+                    <td>{{ estructura.estructura_incorrecta }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
